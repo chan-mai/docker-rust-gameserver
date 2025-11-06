@@ -55,7 +55,7 @@ docker run -d \
   -e SERVER_HOSTNAME="My Rust Server" \
   -e MAX_PLAYERS=100 \
   -e RCON_PASSWORD=changeme \
-  rust-gameserver
+  ghcr.io/chan-mai/rust-gameserver:latest
 ```
 
 ## 環境変数一覧

@@ -1,7 +1,9 @@
 services:
   rust-gameserver:
-    build:
-      context: .
+    image: ghcr.io/chan-mai/rust-gameserver:latest
+    # build:
+    #   context: .
+    
     platform: linux/amd64
     container_name: rust-gameserver
     restart: unless-stopped
