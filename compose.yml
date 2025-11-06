@@ -1,0 +1,37 @@
+services:
+  rust-gameserver:
+    build:
+      context: .
+    platform: linux/amd64
+    container_name: rust-gameserver
+    restart: unless-stopped
+    ports:
+      - "28015:28015/udp"  # ゲームポート
+      - "28016:28016/udp"  # クエリポート
+      - "28016:28016/tcp"  # RCONポート
+    volumes:
+      - rust-data:/opt/rust_server/server
+    environment:
+      - TZ=Asia/Tokyo
+      # サーバー基本設定
+      - SERVER_PORT=28015
+      - QUERY_PORT=28016
+      - RCON_PORT=28016
+      - RCON_PASSWORD=changeme
+      - MAX_PLAYERS=100
+      - SERVER_HOSTNAME=Rust Server in Docker
+      - SERVER_IDENTITY=rust-server
+      # マップ設定
+      - SERVER_LEVEL=Procedural Map
+      - SERVER_SEED=12345
+      - WORLD_SIZE=4000
+      - SAVE_INTERVAL=600
+      # サーバー情報
+      - SERVER_DESCRIPTION=Welcome to Rust Server!
+      - SERVER_URL=
+      - SERVER_TAGS=
+
+volumes:
+  rust-data:
+    driver: local
+
